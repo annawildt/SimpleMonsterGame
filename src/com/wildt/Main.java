@@ -16,6 +16,7 @@ public class Main {
         terminal.enterPrivateMode();
 
         Player player = new Player();
+        int playerLife = player.getLife();
         Point playerPos = player.getPosition();
 
         Monster[] monsters = new Monster[100];
@@ -29,6 +30,7 @@ public class Main {
         Graphics.createGameMap(terminal);
         Graphics.updateGameMap(player,monsters,terminal);
         Graphics.printText(5,32,"Game Start",terminal);
+        Graphics.printText(80,32,"Player life: " + playerLife,terminal);
 
         while (!gameOver) {
             System.out.println(player.getPosition());
@@ -68,7 +70,11 @@ public class Main {
                 }
                 monsters[i].moveMonster(playerPos);
                 if (monsters[i].collision(playerPos)) {
-                    gameOver = true;
+                    if (playerLife > 0) {
+                        player.setLife(playerLife-1);
+                    } else if (playerLife == 0) {
+                        gameOver = true;
+                    }
                     break;
                 }
             }
@@ -82,6 +88,7 @@ public class Main {
             terminal.clearScreen();
             Graphics.createGameMap(terminal);
             Graphics.updateGameMap(player,monsters,terminal);
+            Graphics.printText(80,32,"Player life: " + playerLife,terminal);
         }
 
         if(gameOver){
