@@ -1,5 +1,8 @@
 package com.wildt;
 
+import java.awt.*;
+import java.util.Random;
+
 public class Monster extends Unit {
     public Monster() {
         Point p = spawnUnit();
