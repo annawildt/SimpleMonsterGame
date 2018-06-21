@@ -22,4 +22,13 @@ public class Unit {
     public int getSpeed() {
         return speed;
     }
+
+    private Point spawnUnit (){
+        Random random = new Random();
+        int x = random.nextInt(901);
+        int y = random.nextInt(601);
+        Point p = new Point(x, y);
+        return p;
+
+    }
 }
