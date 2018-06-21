@@ -35,4 +35,8 @@ public class Unit {
         return p;
 
     }
+
+    public void move(int x,int y){
+        this.setPosition(this.x + x,this.y + y);
+    }
 }
