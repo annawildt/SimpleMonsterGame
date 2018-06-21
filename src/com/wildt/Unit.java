@@ -11,16 +11,19 @@ public class Unit {
         Point p = new Point(x, y);
         return p;
     }
+
     public void setPosition(int dX, int dY) {
         this.x = dX;
         this.y = dY;
     }
 
-    public void setSpeed (int speed) {
+    public void setSpeed(int speed) {
+
         this.speed = speed;
     }
 
     public int getSpeed() {
+
         return speed;
     }
 
