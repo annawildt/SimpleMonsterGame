@@ -4,6 +4,7 @@ import java.awt.*;
 import java.util.Random;
 
 public class Monster extends Unit {
+
     public Monster(Point player) {
         Point p;
         do {

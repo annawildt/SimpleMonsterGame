@@ -24,14 +24,23 @@ public class Main {
         }
 
         boolean gameOver = false;
+        int moveCounter = 0;
+
+        Graphics.createGameMap(terminal);
+        Graphics.updateGameMap(player,monsters,terminal);
+        Graphics.printText(5,32,"Game Start",terminal);
 
         while (!gameOver) {
+            System.out.println(player.getPosition());
             Key key;
             do {
                 Thread.sleep(5);
                 key = terminal.readInput();
             }
             while (key == null);
+            // Count key strokes
+            moveCounter++;
+
             switch (key.getKind()) {
                 case ArrowDown:
                     player.move(0, player.getSpeed());
@@ -48,24 +57,35 @@ public class Main {
             }
             // Get new Player current position
             playerPos = player.getPosition();
+            // Next empty monster slot
+            int emptyMonster = 0;
 
             // Move monster array
             for (int i = 0; i < monsters.length; i++) {
                 if (monsters[i] == null) {
+                    emptyMonster = i;
                     break;
                 }
                 monsters[i].moveMonster(playerPos);
-
-
                 if (monsters[i].collision(playerPos)) {
                     gameOver = true;
                     break;
                 }
             }
 
-            if (gameOver) {
-                
+            if(moveCounter%5 == 0){
+                if(emptyMonster < monsters.length) {
+                    monsters[emptyMonster] = new Monster(playerPos);
+                }
             }
+            // Render and update board
+            terminal.clearScreen();
+            Graphics.createGameMap(terminal);
+            Graphics.updateGameMap(player,monsters,terminal);
+        }
+
+        if(gameOver){
+            Graphics.printText(45,15,"GAME OVER",terminal);
         }
 
     }
