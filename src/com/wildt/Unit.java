@@ -39,4 +39,12 @@ public class Unit {
     public void move(int x,int y){
         this.setPosition(this.x + x,this.y + y);
     }
+
+    public boolean collision(Point player) {
+        boolean collision = false;
+        if (this.getPosition().equals(player)) {
+            collision = true;
+        }
+        return collision;
+    }
 }

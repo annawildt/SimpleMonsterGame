@@ -4,8 +4,9 @@ public class Player extends Unit{
     private int lives;
 
     public Player (){
-        this.setPosition(450, 300);
+        this.spawnUnit();
         this.setLife(3);
+        this.setSpeed(3);
     }
 
     public void setLife (int life) {
