@@ -9,16 +9,12 @@ import java.nio.charset.Charset;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException{
+
         Terminal terminal = TerminalFacade.createTerminal(System.in, System.out, Charset.forName("UTF8"));
         terminal.enterPrivateMode();
 
-//        for (int i = 0; i < 5; i++) {
-//            terminal.moveCursor(5, i);
-//            terminal.putCharacter('O');
-//            terminal.moveCursor(i, 5);
-//            terminal.putCharacter('X');
-//        terminal.applyBackgroundColor(Terminal.Color.GREEN);
-//        terminal.applyForegroundColor(Terminal.Color.BLUE);
+        Unit.getCursorKey(terminal);
+
     }
 }
