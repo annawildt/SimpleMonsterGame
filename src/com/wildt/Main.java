@@ -70,8 +70,9 @@ public class Main {
                 }
                 monsters[i].moveMonster(playerPos);
                 if (monsters[i].collision(playerPos)) {
+                    playerLife = playerLife-1;
                     if (playerLife > 0) {
-                        player.setLife(playerLife-1);
+                        player.setLife(playerLife);
                     } else if (playerLife == 0) {
                         gameOver = true;
                     }
@@ -93,6 +94,7 @@ public class Main {
 
         if(gameOver){
             Graphics.printText(45,15,"GAME OVER",terminal);
+            Graphics.printText(80,32,"Player life: " + playerLife,terminal);
         }
 
     }
